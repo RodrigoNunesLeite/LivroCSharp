@@ -1,0 +1,69 @@
+﻿@page "/corridaDeCarros"
+
+<h3 class="text-center">Corrida de carros</h3>
+
+<h3 class="text-center">Carros na pista na volta @volta </h3>
+
+<table class="table border rounded">
+    @for(int i = 0; i < 5; i++) {
+    <tr>
+        <td>
+            Carro No. @i
+        </td>
+        <td>
+            Km rodados: @km[i]
+        </td>
+    </tr>
+    }
+</table>
+
+<div class="row">
+    <div class="col text-center">
+        <button @onclick="Corre" class="btn btn-outline-info">
+            Corre uma volta 
+        </button>
+    </div>
+    <div class="col text-center">
+        <button @onclick="Reiniciar" class="btn btn-outline-info">
+            Reiniciar corrida
+        </button>
+    </div>
+</div>
+
+    @if (@carroVencedor != 0) { 
+    <h3 class="text-center" style="color:red"> O vencedor foi o carro @carroVencedor  </h3>
+    }
+
+@code {
+    int[] km = new int[5];
+    int volta;
+    Random kmPercorrido = new Random();
+    int carroVencedor;
+
+    void Corre() {
+        if (carroVencedor > 0) {
+            Reiniciar();
+        }
+
+        for (int i = 0; i < 5; i++) {
+            km[i] = km[i] + kmPercorrido.Next(5) + 1;
+            Console.WriteLine(kmPercorrido.Next(5) + 1);
+            if (km[i] >= 20) {
+                carroVencedor = i;
+            }
+        }
+
+        volta++;
+    }
+
+    void Reiniciar() {
+
+        for(int i=0; i < km.Length; i++) {
+            km[i] = 0;
+
+        }
+
+        volta = 0;
+        carroVencedor = 0;
+    }
+}

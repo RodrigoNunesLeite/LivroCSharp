@@ -1,0 +1,59 @@
+﻿@page "/testestring"
+
+<h3 class="text-center"> Testes com Strings </h3>
+
+<br/>
+<table class="table">
+	<tr>
+		<td>
+			<button @onclick="TestarMatriz" class="btn btn-outline-primary">
+				Testar String como Matriz
+			</button>
+
+		</td>
+		<td>
+			<button @onclick="TestarBusca" class="btn btn-outline-primary">
+				Testar Busca
+			</button>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button @onclick="TestarInsercao" class="btn btn-outline-primary">
+				Testar Inserção
+			</button>
+		</td>
+		<td>
+			<button @onclick="TestarRemocao" class="btn btn-outline-primary">
+				Testar Remoção
+			</button>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button @onclick="TestarSubstituicao" class="btn btn-outline-primary">
+				Testar Substituição
+			</button>
+		</td>
+		<td>
+			<button @onclick="TestarConcatenacao" class="btn btn-outline-primary">
+				Testar Concatenação
+			</button>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<button @onclick="TestarInterpolacao" class="btn btn-outline-primary">
+				Testar Interpolação
+			</button>
+		</td>
+		<td></td>
+	</tr>
+</table>
+
+<div class="p-3">
+	<label>
+		Veja o resultado dos testes no Console do navegador. Para ativá-lo, pressione <b>F12</b>
+	</label>
+</div>
+

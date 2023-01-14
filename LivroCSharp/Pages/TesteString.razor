@@ -57,3 +57,89 @@
 	</label>
 </div>
 
+@code{
+    void TestarMatriz()
+    {
+        string nome = "ABCDE";
+        string resultado = "";
+
+        for (int i = 0; i < nome.Length; i++)
+        {
+            char caractere = nome[i];
+
+            caractere++;
+
+            resultado = resultado + Convert.ToString(caractere);
+        }
+
+        Console.WriteLine(resultado);
+    }
+
+
+    void TestarBusca()
+    {
+        string verso = "No meio do caminho";
+
+        int p1 = verso.IndexOf("caminho");
+        int p2 = verso.IndexOf("pedra");
+
+        Console.WriteLine(p1);
+        Console.WriteLine(p2);
+    }
+
+
+    void TestarInsercao()
+    {
+        string mauConselho = "Se você é capaz de sonhar, desista dos seus sonhos.";
+        string bomConselho = mauConselho.Insert(27, "nunca ");
+
+        Console.WriteLine(mauConselho);
+        Console.WriteLine(bomConselho);
+    }
+
+    void TestarRemocao()
+    {
+        string mauConselho = "A melhor forma de não se frustrar é nunca confiar";
+        string bomConselho = mauConselho.Remove(18, 4);
+
+        Console.WriteLine(mauConselho);
+        Console.WriteLine(bomConselho);
+    }
+
+    void TestarSubstituicao()
+    {
+        string mauConselho = "Sou incompetente, incompreendido e infeliz";
+        string bomConselho = mauConselho.Replace("in", "");
+
+        Console.WriteLine(mauConselho);
+        Console.WriteLine(bomConselho);
+    }
+
+    void TestarConcatenacao()
+    {
+        string s1 = "Bom ";
+        string s2 = "Dia";
+        string s3 = String.Concat(s1, s2);
+        Console.WriteLine(s3);
+    }
+
+    void TestarConcatenacao2()
+    {
+        string s1 = "Bom ";
+        string s2 = "Dia";
+        string s3 = s1 + s2;
+        Console.WriteLine(s3);
+    }
+
+    void TestarInterpolacao()
+    {
+        string nome = "João";
+        int idade = 29;
+        string esporte = "futebol";
+
+        string junto;
+        junto = $"Meu nome é {nome}, tenho {idade} anos e gosto de {esporte}";
+
+        Console.WriteLine(junto);
+    }
+}

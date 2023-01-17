@@ -3,6 +3,11 @@
 <h3 class="text-center">Criptografador</h3>
 
 <div class="row">
+	<div class="col-3 p-3">
+		<label>Chave</label>
+		<input @bind="Chave" class="form-control" />
+	</div>
+
 	<div class="col text-center">
 		<label>Informe aqui o texto original</label>
 		<textarea @bind="Original" class="form-control"></textarea>
@@ -34,7 +39,7 @@
 
 
 @code {
-
+	string Chave;
 	string Original;
 	string Criptografado;
 	string Descriptografado;
@@ -45,8 +50,8 @@
 
 		foreach(char car in Original)
 		{
-			int embaralhado = Convert.ToInt32(car) + 5;
-			s = s + (char)embaralhado;
+			int   embaralhado = Convert.ToInt32(car) + 5 + Convert.ToInt32(Chave);
+			s = s + (char)embaralhado ;
 		}
 
 		Criptografado = s;
@@ -58,7 +63,7 @@
 
 		foreach(char car in Criptografado)
 		{
-			int embaralhado = Convert.ToInt32(car) - 5;
+			int embaralhado = Convert.ToInt32(car) - 5 - Convert.ToInt32(Chave);
 			s = s + (char)embaralhado;
 		}
 

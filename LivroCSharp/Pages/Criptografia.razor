@@ -3,72 +3,79 @@
 <h3 class="text-center">Criptografador</h3>
 
 <div class="row">
-	<div class="col-3 p-3">
-		<label>Chave</label>
-		<input @bind="Chave" class="form-control" />
-	</div>
+    <div class="col-3 p-3">
+        <label>Chave</label>
+        <input @bind="Chave" class="form-control" />
+    </div>
 
-	<div class="col text-center">
-		<label>Informe aqui o texto original</label>
-		<textarea @bind="Original" class="form-control"></textarea>
-	</div>
+    <div class="col text-center">
+        <label>Informe aqui o texto original</label>
+        <textarea @bind="Original" class="form-control"></textarea>
+    </div>
 </div>
 
 <div class="row">
-	<div class="col-3 p-3">
-		<button @onclick="Criptografar" class="btn btn-primary">
-			Criptografar
-		</button>
-	</div>
-	<div class="col-9 p-3">
-		<textarea @bind="Criptografado" class="form-control">
+    <div class="col-3 p-3">
+        <button @onclick="Criptografar" class="btn btn-primary">
+            Criptografar
+        </button>
+    </div>
+    <div class="col-9 p-3">
+        <textarea @bind="Criptografado" class="form-control">
 		</textarea>
-	</div>
+    </div>
 </div>
 
 <div class="row">
-	<div class="col-3 p-3">
-		<button @onclick="Descriptografar" class="btn btn-primary">
-			Descriptografar
-		</button>
-	</div>
-	<div class="col-9 p-3">
-		<textarea @bind="Descriptografado" class="form-control"></textarea>
-	</div>
+    <div class="col-3 p-3">
+        <button @onclick="Descriptografar" class="btn btn-primary">
+            Descriptografar
+        </button>
+    </div>
+    <div class="col-9 p-3">
+        <textarea @bind="Descriptografado" class="form-control"></textarea>
+    </div>
 </div>
 
 
 @code {
-	string Chave;
-	string Original;
-	string Criptografado;
-	string Descriptografado;
+    string Chave;
+    string Original;
+    string Criptografado;
+    string Descriptografado;
 
-	void Criptografar()
-	{
-		string s = "";
+    void Criptografar() {
+        string s = "";
 
-		foreach(char car in Original)
-		{
-			int   embaralhado = Convert.ToInt32(car) + 5 + Convert.ToInt32(Chave);
-			s = s + (char)embaralhado ;
-		}
+        if (Chave == "") {
+            return;
+        }
 
-		Criptografado = s;
-	}
+        foreach (char car in Original) {
+            int embaralhado = Convert.ToInt32(car) + 5;
+            s = s + (char)embaralhado;
+        }
 
-	void Descriptografar()
-	{
-		string s = "";
+        foreach (char chaveCar in Chave) {
+            int embaralhado = Convert.ToInt32(chaveCar) + 5;
+            s = s + (char)embaralhado;
+        }
 
-		foreach(char car in Criptografado)
-		{
-			int embaralhado = Convert.ToInt32(car) - 5 - Convert.ToInt32(Chave);
-			s = s + (char)embaralhado;
-		}
 
-		Descriptografado = s;
-	}
+        Criptografado = s;
+    }
+
+    void Descriptografar() {
+        string s = "";
+
+        foreach (char car in Criptografado) {
+            int embaralhado = Convert.ToInt32(car) - 5;
+            s = s + (char)embaralhado;
+        }
+
+        s = s.Replace(Chave, "");
+        Descriptografado = s;
+    }
 }
 
 

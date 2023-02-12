@@ -1,0 +1,69 @@
+﻿@page "/frases"
+ 
+<h3>Frases</h3>
+
+<div class="p-3">
+    <button @onclick="GerarFrases" class="btn btn-outline-primary">
+        Gerar Frases
+    </button>
+</div>
+
+<div class="p-3 border rounded">
+    @foreach(string s in FrasesLista)
+     { 
+        <p>@s</p>
+    }
+</div>
+
+@code {
+    // Aqui estão as propriedades da classe Frases (componente)
+
+
+    // Propriedade é uma lista de frases. Começa zerada.
+    private List<string> FrasesLista = new List<string>();
+
+    // Propriedade com a matriz de partes iniciais
+    private string[] Sujeito = {
+        "João",
+        "Maria",
+        "André",
+        "Artur",
+        "Clara",
+        "Juan",
+        "Júlia"
+    };
+
+    // Propriedade com a matriz de partes intermediárias
+    private string[] Acao = {
+            " gosta de",
+            " odeia",
+            " compra",
+            " vende",
+            " ama",
+            " se liga em",
+            " nem liga para"
+        };
+
+    // Propriedade com a matriz de partes finais
+    private string[] Complemento = {
+        " abacate.",
+        " abóbora.",
+        " carro.",
+        " bicicleta.",
+        " sonhos.",
+        " algodão doce.",
+        " esportes."
+    };
+
+    void GerarFrases()
+    {
+        // Random vai nos permitir pegar números aleatórios
+        Random aleatorio = new Random();
+
+        // Limp a lista, pois pode ser a segunda rodada
+        FrasesLista.Clear();
+
+        // Identifico o tamanho a primeira matriz
+
+    }
+}

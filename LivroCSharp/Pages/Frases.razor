@@ -64,6 +64,17 @@
         FrasesLista.Clear();
 
         // Identifico o tamanho a primeira matriz
+        int tamanho = Sujeito.Length;
 
+        // Baseado neste tamanho, defino o número de frases
+        for(int i = 0; i < tamanho; i++)
+        {
+            string frase = "";
+            frase += Sujeito[aleatorio.Next(tamanho)];
+            frase += Acao[aleatorio.Next(tamanho)];
+            frase += Complemento[aleatorio.Next(tamanho)];
+
+            FrasesLista.Add(frase);
+        }
     }
 }

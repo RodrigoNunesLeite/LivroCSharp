@@ -32,16 +32,12 @@
          
          <div class="form-group">
             <input @bind="Filtro" class="form-control"/>
-         </div>
          
-         <div class="form-group">
             <button @onclick="() => FiltraProduto(Filtro)" class="btn btn-info">
                 Filtrar
             </button>
-         </div>
-
-         <div class="form-group">
-            <button @onclick="LimparFiltro()" class="btn btn-secondary">
+         
+            <button @onclick="LimparFiltro" class="btn btn-secondary">
                 Limpar Filtro
             </button>
          </div>
@@ -108,5 +104,11 @@
 
     private void FiltraProduto(String filtro)
     {
+        Produtos.Where(p => p.Nome.Equals(filtro));
+    }
+
+    private void LimparFiltro()
+    {
+        Filtro = "";
     }
 }

@@ -1,0 +1,45 @@
+﻿@page "/repositorioprodutos"
+
+@using LivroCSharp.MinhasClasses
+@using static LivroCSharp.Data.Produtos
+
+<div class="card">
+	
+	<div class="card-header text-center">
+		<h4>Cadastro de produtos - Repositório</h4>
+	</div>
+
+	<div class="card-boy row p-1">
+		
+		<div class="col">
+			
+			<div class="form-group">
+				<label>Produto</label>
+				<input @bind="ProdutoCadastro.Nome" class="form-control"/>
+			</div>
+
+			<div class="form-group">
+				<label>Preço</label>
+				<input @bind="ProdutoCadastro.Preco" class="form-control"/>
+			</div>
+
+		</div>
+
+		<div class="col-auto d-flex align-content-center">
+			<button @onclick="IncluirProduto" class="btn btn-outline-primary">
+				@NomeBotao
+			</button>
+		</div>
+
+	</div>
+
+</div>
+
+@if(ProdutosTotal > 0)
+{
+	<div class="container mt-4">
+		
+		<div class="text-center text-info">Produtos cadastrados.Filtro(@Filtro)</div>
+	</div>
+
+}

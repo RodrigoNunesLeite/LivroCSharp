@@ -52,13 +52,6 @@ namespace LivroCSharp.Data
 
         public static void ProdutosFiltro(string nomeProduto)
         {
-
-            /*
-            if (Itens.Where(p => p.Nome.Equals(nomeProduto)).ToList() != null)
-            {
-                ProdutosFiltrados = Itens.Where(p => p.Nome.Contains(nomeProduto)).ToList();
-            }
-            Itens = ProdutosFiltrados; */
             Itens = Itens.FindAll(p => p.Nome == nomeProduto);
 
         }

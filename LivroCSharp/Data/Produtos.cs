@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using LivroCSharp.MinhasClasses;
 
 namespace LivroCSharp.Data 
@@ -47,6 +48,12 @@ namespace LivroCSharp.Data
             {
                 Itens.Remove(produtoEncontrado);
             }
+        }
+
+        public static void ProdutosFiltro(string nomeProduto)
+        {
+            Itens = Itens.FindAll(p => p.Nome == nomeProduto);
+
         }
 
     }

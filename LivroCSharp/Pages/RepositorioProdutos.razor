@@ -47,7 +47,7 @@
 			</div>
 
 			<div class="col-3">
-				<button class="btn btn-info">Filtrar</button>
+				<button onclick="FiltrarProduto" class="btn btn-info">Filtrar</button>
 			</div>
 
 			<div class="col-3">
@@ -123,7 +123,12 @@
     private void AlterarProduto(Produto p)
     {
         ProdutoCadastro = p;
-		NomeBotao = "Alterar";
+        NomeBotao = "Alterar";
+    }
+
+    private void FiltrarProduto(String filtro)
+    {
+        ProdutosFiltro(filtro);
     }
 }
 

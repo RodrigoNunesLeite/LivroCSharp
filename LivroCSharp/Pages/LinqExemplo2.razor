@@ -1,0 +1,72 @@
+﻿@page "/linqexemplo2"
+
+@using LivroCSharp.MinhasClasses
+
+<h2 class="text-center p-3">Lista de Funcionários</h2>
+
+<select name="select" @onchange="Selecionar" class="form-control">
+    <option value="Todos">Todos</option>
+    @foreach(string opcao in Departamentos)
+            {
+                <option value="@opcao">@opcao</option>
+            }
+</select>
+
+<table class="table">
+
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Departamento</th>
+            <th>Gênero</th>
+            <th>Salário</th>
+        </tr>
+    </thead>
+
+    @foreach(Funcionario f in Funcionarios)
+            {
+                <tr>
+                    <td>@f.Nome</td>
+                    <td>@f.Departamento</td>
+                    <td>@f.Genero</td>
+                    <td>@f.Salario</td>
+                </tr>
+            }
+
+</table>
+
+@code {
+
+    protected BancoDados MeuBanco = new BancoDados();
+    protected List<Funcionario> Funcionarios { get; set; }
+    protected List<string> Departamentos { get; set; }
+
+
+    protected override void OnInitialized()
+    {
+        Funcionarios = MeuBanco.Funcionarios
+            .ToList();
+
+        Departamentos = MeuBanco.Funcionarios
+            .Select(s => s.Departamento)
+            .Distinct()
+            .ToList();
+    }
+
+    protected void Selecionar(ChangeEventArgs e)
+    {
+        string opcao = e.Value.ToString();
+
+        if(opcao.Equals("Todos"))
+        {
+            Funcionarios = MeuBanco.Funcionarios
+            .ToList();
+        }
+        else
+        {
+            Funcionarios = MeuBanco.Funcionarios
+            .Where(w => w.Departamento.Equals(opcao))
+            .ToList();
+        }
+    }
+}

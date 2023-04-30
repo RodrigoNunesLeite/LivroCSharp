@@ -22,17 +22,35 @@
             <th>Salário</th>
         </tr>
     </thead>
+    @if(Funcionario != null)
+    { 
+        @foreach(Funcionario f in Funcionarios)
+                {
+                    <tr>
+                        <td>@f.Nome</td>
+                        <td>@f.Departamento</td>
+                        <td>@f.Genero</td>
+                        <td class="text-right">@f.Salario.ToString("c")</td>
+                    </tr>
+                }
+    }
 
-    @foreach(Funcionario f in Funcionarios)
-            {
-                <tr>
-                    <td>@f.Nome</td>
-                    <td>@f.Departamento</td>
-                    <td>@f.Genero</td>
-                    <td>@f.Salario</td>
-                </tr>
-            }
-
+    <tr>
+        <td></td>
+        <td></td>
+        <td class="text-right">TOTAL</td>
+        <td class="text-right font-weight-bolder">
+            @TotalSalario.ToString("c")
+        </td>
+    </tr>
+    <tr>
+        <td></td>
+        <td></td>
+        <td class="text-right">FUNCIONÁRIOS</td>
+        <td class="font-weight-bolder">
+            @TotalFuncionarios
+        </td>
+    </tr>
 </table>
 
 @code {

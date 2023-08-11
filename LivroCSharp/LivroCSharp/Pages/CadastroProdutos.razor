@@ -1,0 +1,121 @@
+﻿@page "/cadastroprodutos"
+
+@using LivroCSharp.MinhasClasses
+
+<div class="card">
+    <div class="card-header text-center">
+        <h1>Cadastro de produtos</h1>
+    </div>
+
+    <div class="card-body p-1">
+        <div class="form-group">
+            <label>Produto</label>
+            <input @bind="NomeProduto" class="form-control" />
+        </div>
+
+        <div class="form-group">
+            <label>Preço</label>
+            <input @bind="PrecoProduto" class="form-control" />
+        </div>
+
+        <div class="card-footer text-center">
+            <button @onclick="IncluirProduto" class="btn btn-primary">
+                Incluir
+            </button>
+        </div>
+    </div>
+
+    @if (Produtos.Count > 0) {
+        <div class="container mt-4">
+            <div class="text-center text-info">Produtos Cadastrados</div>
+
+            <div class="form-group d-flex">
+              
+                    <input @bind="Filtro" class="form-control" style="width:40%" />
+
+                    <button @onclick="() => FiltraProduto(Filtro)" class="btn btn-info ml-2">
+                        Filtrar
+                    </button>
+                
+                <button @onclick="LimparFiltro" class="btn btn-secondary ml-auto ml-5">
+                    Limpar Filtro
+                </button>
+                
+            </div>
+
+            <table class="table">
+                <tr>
+                    <td class="text-muted">Código</td>
+                    <td class="text-muted">Nome</td>
+                    <td class="text-muted">Preço</td>
+                    <td class="text-muted">Exclusão</td>
+                </tr>
+                @foreach (Produto p in Produtos) {
+                    <tr>
+                        <td>@p.Codigo</td>
+                        <td>@p.Nome</td>
+                        <td>@p.Preco.ToString("c")</td>
+                        <td>
+                            <button @onclick="() => ExcluirProduto(p)" class="btn btn-danger">
+                                Excluir
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </table>
+        </div>
+    }
+</div>
+
+
+@code {
+    // Repositório de produtos
+    private List<Produto> Produtos { get; set; } = new List<Produto>();
+    private List<Produto> ProdutosFiltrados { get; set; } = new List<Produto>();
+    private List<Produto> ProdutosOriginais { get; set; } = new List<Produto>();
+
+    // Produto corrente
+    private string NomeProduto { get; set; }
+    private decimal PrecoProduto { get; set; }
+
+    private string Filtro { get; set; }
+    private void IncluirProduto() {
+        int codigo = 1;
+
+        if (Produtos.Count > 0) {
+            codigo = Produtos[Produtos.Count - 1].Codigo + 1;
+        }
+
+        Produto NovoProduto = new Produto();
+        NovoProduto.Codigo = codigo;
+        NovoProduto.Nome = NomeProduto;
+        NovoProduto.Preco = PrecoProduto;
+
+        Produtos.Add(NovoProduto);
+        ProdutosOriginais.Add(NovoProduto);
+        PrecoProduto = 0;
+        NomeProduto = "";
+    }
+
+    private void ExcluirProduto(Produto p) {
+        Produtos.Remove(p);
+        ProdutosOriginais.Remove(p);
+    }
+
+    private void FiltraProduto(String filtro) {
+
+
+        if (Produtos.Where(p => p.Nome.Equals(filtro)).ToList() != null) {
+            ProdutosFiltrados = Produtos.Where(p => p.Nome.Contains(filtro)).ToList();
+        }
+        Produtos = ProdutosFiltrados;
+        Produtos = ProdutosFiltrados.FindAll(p => p.Nome != "");
+    }
+
+    private void LimparFiltro() {
+        Filtro = "";
+        //Produtos = Produtos.FindAll(p => p.Nome != "");
+        Produtos.Clear();
+        Produtos = ProdutosOriginais.FindAll(p => p.Nome != "");
+    }
+}

@@ -9,7 +9,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace LivroCSharp {
-	//teste
     public class Program {
         public static async Task Main(string[] args) {
             var builder = WebAssemblyHostBuilder.CreateDefault(args);

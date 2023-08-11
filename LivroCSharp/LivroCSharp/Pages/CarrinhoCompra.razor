@@ -1,0 +1,154 @@
+﻿@page "/carrinhocompra"
+
+@using LivroCSharp.MinhasClasses
+@using static LivroCSharp.Data.Produtos
+@using static LivroCSharp.Data.Carrinho
+    
+<h3 class="text-center bg-info text-white">CarrinhoCompra</h3>
+
+@*Nesta DIV ficam os itens para venda*@
+<div class="row">
+    
+    @foreach(Item item in Prateleira) 
+    { 
+        <div class="col-3">
+
+            <div class="card m-2">
+
+                <div class="card-title text-center font-weight-bold p-1">
+                    @item.Produto.Nome
+                </div>
+
+                <div class="card-body text-right p-1">
+                    <div>@item.Produto.Preco.ToString("c")</div>
+                    <div>
+                        <input @bind="item.Quantidade" 
+                               class="form-control text-right" 
+                               type="number" />
+                    </div>
+                </div>
+
+                <div class="card-footer text-center p-1">
+                    <button class="btn btn-primary"
+                        @onclick="() => CarrinhoAdicionar(item.Produto,item.Quantidade)">
+                        Adicionar
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    }
+</div>
+
+
+@*Nesta DIV ficam os itens que foram para o carrinho*@
+<div class="card border m-2">
+
+    <div class="card-header text-center">
+        Sua conta
+    </div>    
+
+    <div class="card-body">
+
+        <div class="row text-center text-info">
+            <div class="col">Produto</div>
+            <div class="col">Quantidade</div>
+            <div class="col text-right">Valor Total</div>
+            <div class="col text-right"></div>
+        </div>
+
+        @{ 
+            decimal total = 0;
+        }
+
+        @foreach(Item itemCarrinho in CarrinhoLista())
+        {
+
+            decimal totalItem = itemCarrinho.Quantidade * itemCarrinho.Produto.Preco;
+            total += totalItem;
+
+            <div class="row border-bottom align-items-center">
+                <div class="col">@itemCarrinho.Produto.Nome</div>
+                <div class="col text-center">@itemCarrinho.Quantidade</div>
+                <div class="col text-right">@totalItem.ToString("c")</div>
+                <div class="col text-center">
+                    <button class="btn btn-danger"
+                            @onclick="() => CarrinhoExcluir(itemCarrinho.Produto)"
+                            >
+                        X
+                    </button>
+                </div>
+            </div>
+
+        }
+    </div>
+
+    <div class="card-footer text-right font-weight-bold">
+        Total:@total.ToString("c")
+    </div>
+    
+</div>
+
+@code {
+
+    private static List<Item> Prateleira = new List<Item>();
+
+    // Roda apenas na carga do componente
+    protected override void OnInitialized()
+    {
+        // Roda se não tem produtos cadastrados
+        if(ProdutosTotal == 0)
+        {
+            ProdutosIncluir(new Produto
+            {
+                Nome = "Computador Basico",
+                Preco = 2500
+            });
+            ProdutosIncluir(new Produto
+            {
+                Nome = "Computador Mediano",
+                Preco = 3500
+            });
+            ProdutosIncluir(new Produto
+            {
+                Nome = "Computador Avançado",
+                Preco = 5500
+            });
+            ProdutosIncluir(new Produto
+            {
+                Nome = "Computador Designer",
+                Preco = 7500
+            });
+            ProdutosIncluir(new Produto
+            {
+                Nome = "Computador Gamer",
+                Preco = 9500
+            });
+            ProdutosIncluir(new Produto
+            {
+                Nome = "Computador Engenheiro",
+                Preco = 10500
+            });
+            ProdutosIncluir(new Produto
+            {
+                Nome = "Computador Físico",
+                Preco = 13500
+            });
+
+        }
+
+        // Roda se a prateleira está vazia
+        if(Prateleira.Count == 0)
+        {
+            foreach(Produto produto in ProdutosLista)
+            {
+                Prateleira.Add(new Item
+                {
+                    Produto = produto,
+                    Quantidade = 0
+                });
+            }
+        }
+    }
+}

@@ -1,0 +1,147 @@
+﻿<div class="top-row pl-4 navbar navbar-dark">
+    <a class="navbar-brand" href="">LivroCSharp</a>
+    <button class="navbar-toggler" @onclick="ToggleNavMenu">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+</div>
+
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
+    <ul class="nav flex-column">
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                <span class="oi oi-home" aria-hidden="true"></span> Desafio
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="fetchdata">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="variaveis">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Variáveis
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="metodo">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Metódo
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="conversoes">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Conversões
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="imc">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>IMC
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="viagem">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Desafio1
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="notas">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Notas
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="desafio2">
+                <span class="oi oi-list-rich" ari-hidden="true"></span>Desafio 2
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="dadosSimples">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Dados Simples
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="numerosPrimos">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Números Primos
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="predio">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Prédio
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="corridaDeCarros">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Corrida de Carros
+            </NavLink>
+        </li>
+
+        <li class="nav-item px3">
+            <NavLink class="nav-link" href="testestring">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Teste com String
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="criptografia">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Criptografar
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="cadastroalunos">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Cadastro de Alunos
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="frases">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Frases
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="cadastroprodutos">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Cad.Produtos
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="repositorioprodutos">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Repositório Produtos
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="linqexemplo">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Linq Exemplo
+            </NavLink>
+        </li>
+
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="linqexemplo2">
+                <span class="oi oi-list-rich" aria-hidden="true"></span>Linq Exemplo2
+            </NavLink>
+        </li>
+    </ul>
+</div>
+
+@code {
+    private bool collapseNavMenu = true;
+
+    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
+
+    private void ToggleNavMenu()
+    {
+        collapseNavMenu = !collapseNavMenu;
+    }
+}
